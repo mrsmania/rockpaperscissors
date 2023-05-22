@@ -1,53 +1,74 @@
 function getComputerChoice() {
     let randomNumber;
-    let choice;
+    let computerChoice;
     randomNumber = Math.floor(Math.random()*3);
 
     if (randomNumber === 0) {
-        choice = "ROCK";
+        computerChoice = "rock";
     } else if (randomNumber === 1) {
-        choice = "PAPER";
+        computerChoice = "paper";
     } else if (randomNumber === 2) {
-        choice = "SCISSORS";
+        computerChoice = "scissors";
     } else {
-        choice = "Error. Try again later.";
+        computerChoice = "Error. Try again later.";
     }
-    return choice.toLowerCase();
+    return computerChoice;
+}
+
+function getPlayerSelection() {
+    let playerChoice = prompt("Enter your choice of Rock, Paper or Scissors: ", "RocK");
+    if(playerChoice == null) {
+        playerChoice = "cancelled";
+    } else {
+        playerChoice = playerChoice.toLowerCase();
+        if(!((playerChoice === "rock") || (playerChoice === "paper") || (playerChoice === "scissors"))) {
+            playerChoice ="invalidInput";
+        }
+    }
+    return playerChoice;
 }
 
 function playRound(playerSelection, computerSelection) {
-
-    switch(true) {
-        case (playerSelection === computerSelection) :
-            return "Draw!";
-            break;
-
-        case (
-            (playerSelection === "Rock" && computerSelection === "Scissors") ||
-            (playerSelection === "Paper" && computerSelection === "Rock") ||
-            (playerSelection === "Scissors" && computerSelection === "Paper")
-            ) :
-            return "You win! "+playerSelection+" beats "+computerSelection+".";
-            break;
-        
-        case (
-            (playerSelection === "Rock" && computerSelection === "Paper") ||
-            (playerSelection === "Paper" && computerSelection === "Scissors") ||
-            (playerSelection === "Scissors" && computerSelection === "Rock")
-            ) :
-            return "You lose! "+computerSelection+" beats "+playerSelection+".";
-            break;
-        default : return "Error, please try again later!";
+    if(playerSelection == "Cancelled") {
+        console.log("You have cancelled the action. To play the game again reload the page and enter either Rock, Paper or Scissors.");
+    } else if (playerSelection == "InvalidInput") {
+        console.log("You have entered an invalid prompt. To play the game reload the page and enter either Rock, Paper or Scissors.")
+    } else {
+        console.log("Player selection is: "+playerSelection+".");
+        console.log("Computer selection is: "+computerSelection+".");
+        switch(true) {
+            case (playerSelection === computerSelection) :
+                console.log("Draw!");
+                break;
+    
+            case (
+                (playerSelection === "Rock" && computerSelection === "Scissors") ||
+                (playerSelection === "Paper" && computerSelection === "Rock") ||
+                (playerSelection === "Scissors" && computerSelection === "Paper")
+                ) :
+                console.log("You win! "+playerSelection+" beats "+computerSelection+".");
+                break;
+            
+            case (
+                (playerSelection === "Rock" && computerSelection === "Paper") ||
+                (playerSelection === "Paper" && computerSelection === "Scissors") ||
+                (playerSelection === "Scissors" && computerSelection === "Rock")
+                ) :
+                console.log("You lose! "+computerSelection+" beats "+playerSelection+".");
+                break;
+            default : console.log("Error, please try again!");
+        }
     }
 }
 
+function firstLetterToUpperCase(input) {
+    input = input.charAt(0).toUpperCase() + input.slice(1);
+    return input;
+}
 
-let playerSelection = "rock";
+let playerSelection = getPlayerSelection();
 let computerSelection = getComputerChoice();
+playerSelection = firstLetterToUpperCase(playerSelection);
+computerSelection = firstLetterToUpperCase(computerSelection);
 
-playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
-computerSelection = computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
-
-console.log("Player selection ist: "+playerSelection);
-console.log("Computer selection ist: "+computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+playRound(playerSelection, computerSelection);
