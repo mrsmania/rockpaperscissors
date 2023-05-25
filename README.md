@@ -1,4 +1,4 @@
 # rockpaperscissors
 
-@author: SSM
-@project: RPS proj on TOP
+@author: SMM
+@project: RPS
