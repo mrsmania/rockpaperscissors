@@ -1,12 +1,11 @@
 
 
-function firstLetterToUpperCase(input) {
-    input = input.charAt(0).toUpperCase() + input.slice(1);
-    return input;
+function capitalizeFirstLetter(input) {
+    return input.charAt(0).toUpperCase() + input.slice(1);
 }
 
 function playRound(playerSelection, computerSelection) {
-    let result;
+    let roundResult;
     if(playerSelection == "Cancelled") {
         console.log("You have cancelled the action. To play the game again reload the page and enter either Rock, Paper or Scissors.");
     } else if (playerSelection == "InvalidInput") {
@@ -18,7 +17,7 @@ function playRound(playerSelection, computerSelection) {
             case (playerSelection === computerSelection) :
                 //console.log("It's a tie!");
                 //break;
-                result = "tie";
+                roundResult = "tie";
                 break;
     
             case (
@@ -28,7 +27,7 @@ function playRound(playerSelection, computerSelection) {
                 ) :
                 //console.log("You win! "+playerSelection+" beats "+computerSelection+".");
                 //break;
-                result = "playerWins";
+                roundResult = "playerWins";
                 break;
             case (
                 (playerSelection === "Rock" && computerSelection === "Paper") ||
@@ -37,13 +36,13 @@ function playRound(playerSelection, computerSelection) {
                 ) :
                 //console.log("You lose! "+computerSelection+" beats "+playerSelection+".");
                 //break;
-                result = "computerWins";
+                roundResult = "computerWins";
                 break;
             default : 
-                result = "error";
+                roundResult = "error";
                 //console.log("Error, please try again!");
         }
-        return result;
+        return roundResult;
     }
 }
 
@@ -77,23 +76,23 @@ function getPlayerChoice() {
     return getPlayerChoice;
 }
 
-function game() {
+function playGame() {
     let playerCounter = 0;
     let computerCounter = 0;
     let i = 1;
-    while((playerCounter<5) && (computerCounter<5)) {
+    while((playerCounter < 5) && (computerCounter < 5)) {
 
-        let playerChoice = firstLetterToUpperCase(getPlayerChoice());
-        let computerChoice = firstLetterToUpperCase(getComputerChoice());
+        let playerChoice = capitalizeFirstLetter(getPlayerChoice());
+        let computerChoice = capitalizeFirstLetter(getComputerChoice());
     
         console.log("Round "+i+", FIGHT!");
-        let result = playRound(playerChoice, computerChoice);
-        if (result == "tie") {
+        let roundResult = playRound(playerChoice, computerChoice);
+        if (roundResult == "tie") {
             console.log("It's a tie!");
-        } else if(result == "playerWins") {
+        } else if(roundResult == "playerWins") {
             console.log("You win!");
             playerCounter++;
-        } else if (result == "computerWins") {
+        } else if (roundResult == "computerWins") {
             console.log("You lose!");
             computerCounter++;
         } else  {
@@ -103,6 +102,11 @@ function game() {
         console.log("");
         i++;
     }
+    if(playerCounter == 5) {
+        console.log("Woohoo, that's a WIN!");
+    } else  if (computerCounter == 5){
+        console.log("Oh no, that's a LOSS");
+    }
 }
 
-game();
+playGame();
