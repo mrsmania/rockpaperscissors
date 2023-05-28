@@ -105,7 +105,7 @@ function playGame() {
     if(playerCounter == 5) {
         console.log("Woohoo, that's a WIN!");
     } else  if (computerCounter == 5){
-        console.log("Oh no, that's a LOSS");
+        console.log("Oh no, that's a LOSS!");
     }
 }
 
