@@ -64,7 +64,7 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-    let getPlayerChoice = prompt("Enter your choice of Rock, Paper or Scissors: ", "RocK");
+    let getPlayerChoice = "rock"//prompt("Enter your choice of Rock, Paper or Scissors: ", "RocK");
     if(getPlayerChoice == null) {
         getPlayerChoice = "cancelled";
     } else {
@@ -80,7 +80,6 @@ function playGame() {
     let playerCounter = 0;
     let computerCounter = 0;
     let i = 1;
-    while((playerCounter < 5) && (computerCounter < 5)) {
 
         let playerChoice = capitalizeFirstLetter(getPlayerChoice());
         let computerChoice = capitalizeFirstLetter(getComputerChoice());
@@ -101,12 +100,22 @@ function playGame() {
         console.log("Player: "+playerCounter+":"+computerCounter+" Computer.");
         console.log("");
         i++;
-    }
-    if(playerCounter == 5) {
-        console.log("Woohoo, that's a WIN!");
-    } else  if (computerCounter == 5){
-        console.log("Oh no, that's a LOSS");
-    }
 }
 
+// add eventListener to Rock
+const rock = document.getElementById('rock');
+rock.addEventListener('click', () => {console.log("Rock!")});
+
+// add eventListener to Paper
+const paper = document.getElementById('paper');
+paper.addEventListener('click', () => {console.log("Paper!")});
+
+// add eventListener to Scissors
+const scissors = document.getElementById('scissors');
+scissors.addEventListener('click', () => {console.log("Scissors!")});
+
+
+c/* onst buttons = document.getElementsByClassName('btn');
+console.log(buttons);
+ */
 playGame();
