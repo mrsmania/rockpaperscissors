@@ -1,55 +1,89 @@
+const rock = document.getElementById('rock');
+const paper = document.getElementById('paper');
+const scissors = document.getElementById('scissors');
+let lastResult = document.getElementById('lastResult');
+let lastPlayerSelection = document.getElementById('playerSelection');
+let lastComputerSelection = document.getElementById('computerSelection');
+let playerScore = document.getElementById('playerScore');
+let computerScore = document.getElementById('computerScore');
+const rockBtn = document.getElementById('rock');
+const paperBtn = document.getElementById('paper');
+const scissorsBtn = document.getElementById('scissors');
+const playBtns = document.getElementsByClassName('playBtn');
+const resetBtn = document.getElementById('reset');
+resetBtn.style.display = "none";
 
-
-function capitalizeFirstLetter(input) {
-    return input.charAt(0).toUpperCase() + input.slice(1);
-}
+let playerCounter = 0;
+let computerCounter = 0;
 
 function playRound(playerSelection, computerSelection) {
     let roundResult;
-    if(playerSelection == "Cancelled") {
-        console.log("You have cancelled the action. To play the game again reload the page and enter either Rock, Paper or Scissors.");
-    } else if (playerSelection == "InvalidInput") {
-        console.log("You have entered an invalid prompt. To play the game reload the page and enter either Rock, Paper or Scissors.")
-    } else {
-        console.log("Player selection is: "+playerSelection+".");
-        console.log("Computer selection is: "+computerSelection+".");
-        switch(true) {
-            case (playerSelection === computerSelection) :
-                //console.log("It's a tie!");
-                //break;
-                roundResult = "tie";
-                break;
-    
-            case (
-                (playerSelection === "Rock" && computerSelection === "Scissors") ||
-                (playerSelection === "Paper" && computerSelection === "Rock") ||
-                (playerSelection === "Scissors" && computerSelection === "Paper")
-                ) :
-                //console.log("You win! "+playerSelection+" beats "+computerSelection+".");
-                //break;
-                roundResult = "playerWins";
-                break;
-            case (
-                (playerSelection === "Rock" && computerSelection === "Paper") ||
-                (playerSelection === "Paper" && computerSelection === "Scissors") ||
-                (playerSelection === "Scissors" && computerSelection === "Rock")
-                ) :
-                //console.log("You lose! "+computerSelection+" beats "+playerSelection+".");
-                //break;
-                roundResult = "computerWins";
-                break;
-            default : 
-                roundResult = "error";
-                //console.log("Error, please try again!");
-        }
-        return roundResult;
+
+    lastPlayerSelection.textContent = "Player selection is: " + playerSelection + ".";
+    lastComputerSelection.textContent = "Computer selection is: " + computerSelection + ".";
+
+    switch (true) {
+        case (playerSelection === computerSelection):
+            lastResult.textContent = "It's a tie!";
+            roundResult = "tie";
+            break;
+
+        case (
+            (playerSelection === "rock" && computerSelection === "scissors") ||
+            (playerSelection === "paper" && computerSelection === "rock") ||
+            (playerSelection === "scissors" && computerSelection === "paper")
+        ):
+            lastResult.textContent = "You win! " + playerSelection + " beats " + computerSelection + ".";
+            playerCounter++;
+            roundResult = "playerWins";
+            break;
+        case (
+            (playerSelection === "rock" && computerSelection === "paper") ||
+            (playerSelection === "paper" && computerSelection === "scissors") ||
+            (playerSelection === "scissors" && computerSelection === "rock")
+        ):
+            lastResult.textContent = "You lose! " + computerSelection + " beats " + playerSelection + ".";
+            computerCounter++;
+            roundResult = "computerWins";
+            break;
+        default:
+            roundResult = "error";
+            lastResult.textContent = "Error, please try again!";
     }
+    computerScore.textContent = computerCounter;
+    playerScore.textContent = playerCounter;
+    if ((computerCounter >= 5) || (playerCounter >= 5)) {
+        Array.from(playBtns).forEach((playBtn) => {
+            playBtn.style.display = "none";
+        });
+        if (playerCounter == 5) {
+            lastResult.textContent = "WINNER!!!";
+        } else {
+            lastResult.textContent = "LOSER!!!";
+        }
+        resetBtn.style.display = "block";
+        resetBtn.addEventListener('click', reset);
+    }
+}
+
+function reset() {
+    Array.from(playBtns).forEach((playBtn) => {
+        playBtn.style.display = "inline-block";
+    });
+    computerCounter=0;
+    playerCounter=0;
+    playerSelection.textContent="";
+    computerSelection.textContent="";
+    lastResult.textContent="No round played yet, ready!";
+    computerScore.textContent="0";
+    playerScore.textContent="0";
+    resetBtn.style.display="none";
 }
 
 function getComputerChoice() {
     let randomNumber;
     let getComputerChoice;
-    randomNumber = Math.floor(Math.random()*3);
+    randomNumber = Math.floor(Math.random() * 3);
 
     if (randomNumber === 0) {
         getComputerChoice = "rock";
@@ -63,59 +97,17 @@ function getComputerChoice() {
     return getComputerChoice;
 }
 
-function getPlayerChoice() {
-    let getPlayerChoice = "rock"//prompt("Enter your choice of Rock, Paper or Scissors: ", "RocK");
-    if(getPlayerChoice == null) {
-        getPlayerChoice = "cancelled";
-    } else {
-        getPlayerChoice = getPlayerChoice.toLowerCase();
-        if(!((getPlayerChoice === "rock") || (getPlayerChoice === "paper") || (getPlayerChoice === "scissors"))) {
-            getPlayerChoice ="invalidInput";
-        }
-    }
-    return getPlayerChoice;
-}
+rock.addEventListener('click', () => {
+    const playerChoice = "rock";
+    playRound(playerChoice, getComputerChoice());
+});
 
-function playGame() {
-    let playerCounter = 0;
-    let computerCounter = 0;
-    let i = 1;
+paper.addEventListener('click', () => {
+    const playerChoice = "paper";
+    playRound(playerChoice, getComputerChoice());
+});
 
-        let playerChoice = capitalizeFirstLetter(getPlayerChoice());
-        let computerChoice = capitalizeFirstLetter(getComputerChoice());
-    
-        console.log("Round "+i+", FIGHT!");
-        let roundResult = playRound(playerChoice, computerChoice);
-        if (roundResult == "tie") {
-            console.log("It's a tie!");
-        } else if(roundResult == "playerWins") {
-            console.log("You win!");
-            playerCounter++;
-        } else if (roundResult == "computerWins") {
-            console.log("You lose!");
-            computerCounter++;
-        } else  {
-            console.log("Error, please try again later.");
-        }
-        console.log("Player: "+playerCounter+":"+computerCounter+" Computer.");
-        console.log("");
-        i++;
-}
-
-// add eventListener to Rock
-const rock = document.getElementById('rock');
-rock.addEventListener('click', () => {console.log("Rock!")});
-
-// add eventListener to Paper
-const paper = document.getElementById('paper');
-paper.addEventListener('click', () => {console.log("Paper!")});
-
-// add eventListener to Scissors
-const scissors = document.getElementById('scissors');
-scissors.addEventListener('click', () => {console.log("Scissors!")});
-
-
-c/* onst buttons = document.getElementsByClassName('btn');
-console.log(buttons);
- */
-playGame();
+scissors.addEventListener('click', () => {
+    const playerChoice = "scissors";
+    playRound(playerChoice, getComputerChoice());
+});

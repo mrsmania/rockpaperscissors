@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <button class="btn" id="rock">Rock</button>
-    <button class="btn" id="paper">Paper</button>
-    <button class="btn" id="scissors">Scissors</button>
+    <button class="playBtn" id="rock">Rock</button>
+    <button class="playBtn" id="paper">Paper</button>
+    <button class="playBtn" id="scissors">Scissors</button>
+    <div id="scoresContainer">
+        <h1>Scores</h1>
+        <div id="selections">
+            <p id="playerSelection"></p>
+            <p id="computerSelection"></p>
+        </div>
+        <p id="lastResult">No round played yet, ready!</p>
+        <p id="currentScore">
+            <span id="playerScore">0 </span>:
+            <span id="computerScore">0</span>
+        </p>
+        <button class="reset" id="reset">Reset</button>
+    </div>
     <script src="console.js"></script>
 </body>
+
 </html>
