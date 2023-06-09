@@ -6,26 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="console.js" defer></script>
 </head>
 
 <body>
-    <button class="playBtn" id="rock">Rock</button>
-    <button class="playBtn" id="paper">Paper</button>
-    <button class="playBtn" id="scissors">Scissors</button>
-    <div id="scoresContainer">
-        <h1>Scores</h1>
-        <div id="selections">
-            <p id="playerSelection"></p>
-            <p id="computerSelection"></p>
+    <div id="container">
+        <div id="scoresContainer">
+            <h1>RPS</h1>
+            <div id="scoreBoxContainer">
+                <div id="scoreBoxPlayer" class="scoreBox"><h2>Player</h2><br>
+                    <h1><p id="playerScore"></p></h1>
+                    <p id="playerSelection" class="selectionBox">?</p>
+                </div>
+                <div id="scoreBoxComputer" class="scoreBox"><h2>Computer</h2><br>
+                    <h1><p id="computerScore"></p></h1>
+                    <p id="computerSelection" class="selectionBox">?</p>
+                </div>
+            </div>
+            <div id="selections">
+            </div>
+            <p id="lastResult">No round played yet, ready!</p>
         </div>
-        <p id="lastResult">No round played yet, ready!</p>
-        <p id="currentScore">
-            <span id="playerScore">0 </span>:
-            <span id="computerScore">0</span>
-        </p>
-        <button class="reset" id="reset">Reset</button>
+        <div id="buttonsContainer">
+            <div><button class="buttons playBtn" id="rock"><img src="img/rock.png" class="buttonImg"></button></div>
+            <div><button class="buttons playBtn" id="paper"><img src="img/paper.png" class="buttonImg"></button></div>
+            <div><button class="buttons playBtn" id="scissors"><img src="img/scissors.png" class="buttonImg"></button>
+            </div>
+            <div><button class="buttons reset" id="reset">Reset</button></div>
+        </div>
     </div>
-    <script src="console.js"></script>
 </body>
 
 </html>

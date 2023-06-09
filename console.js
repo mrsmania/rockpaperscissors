@@ -16,16 +16,17 @@ resetBtn.style.display = "none";
 let playerCounter = 0;
 let computerCounter = 0;
 
-function playRound(playerSelection, computerSelection) {
-    let roundResult;
+function capitalizeFirstLetter(input) {
+    return input.charAt(0).toUpperCase() + input.slice(1);
+}
 
-    lastPlayerSelection.textContent = "Player selection is: " + playerSelection + ".";
-    lastComputerSelection.textContent = "Computer selection is: " + computerSelection + ".";
+function playRound(playerSelection, computerSelection) {
+    lastPlayerSelection.innerHTML = "<img src='img/"+playerSelection+".png'>";
+    lastComputerSelection.innerHTML = "<img src='img/"+computerSelection+".png'>";
 
     switch (true) {
         case (playerSelection === computerSelection):
             lastResult.textContent = "It's a tie!";
-            roundResult = "tie";
             break;
 
         case (
@@ -33,21 +34,18 @@ function playRound(playerSelection, computerSelection) {
             (playerSelection === "paper" && computerSelection === "rock") ||
             (playerSelection === "scissors" && computerSelection === "paper")
         ):
-            lastResult.textContent = "You win! " + playerSelection + " beats " + computerSelection + ".";
+            lastResult.textContent = "You win! " + capitalizeFirstLetter(playerSelection) + " beats " + capitalizeFirstLetter(computerSelection) + ".";
             playerCounter++;
-            roundResult = "playerWins";
             break;
         case (
             (playerSelection === "rock" && computerSelection === "paper") ||
             (playerSelection === "paper" && computerSelection === "scissors") ||
             (playerSelection === "scissors" && computerSelection === "rock")
         ):
-            lastResult.textContent = "You lose! " + computerSelection + " beats " + playerSelection + ".";
+            lastResult.textContent = "You lose! " + capitalizeFirstLetter(computerSelection) + " beats " + capitalizeFirstLetter(playerSelection) + ".";
             computerCounter++;
-            roundResult = "computerWins";
             break;
         default:
-            roundResult = "error";
             lastResult.textContent = "Error, please try again!";
     }
     computerScore.textContent = computerCounter;
@@ -61,7 +59,7 @@ function playRound(playerSelection, computerSelection) {
         } else {
             lastResult.textContent = "LOSER!!!";
         }
-        resetBtn.style.display = "block";
+        resetBtn.style.display = "inline-block";
         resetBtn.addEventListener('click', reset);
     }
 }
@@ -81,20 +79,9 @@ function reset() {
 }
 
 function getComputerChoice() {
-    let randomNumber;
-    let getComputerChoice;
-    randomNumber = Math.floor(Math.random() * 3);
-
-    if (randomNumber === 0) {
-        getComputerChoice = "rock";
-    } else if (randomNumber === 1) {
-        getComputerChoice = "paper";
-    } else if (randomNumber === 2) {
-        getComputerChoice = "scissors";
-    } else {
-        getComputerChoice = "Error. Try again later.";
-    }
-    return getComputerChoice;
+    const choices = ["rock", "paper", "scissors"];
+    const randomChoice = Math.floor(Math.random() * choices.length);
+    return choices[randomChoice];
 }
 
 rock.addEventListener('click', () => {
