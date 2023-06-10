@@ -1,28 +1,40 @@
-const rock = document.getElementById('rock');
-const paper = document.getElementById('paper');
-const scissors = document.getElementById('scissors');
 let lastResult = document.getElementById('lastResult');
 let lastPlayerSelection = document.getElementById('playerSelection');
 let lastComputerSelection = document.getElementById('computerSelection');
 let playerScore = document.getElementById('playerScore');
-let computerScore = document.getElementById('computerScore');
+let computerScore = document.getElementById('computerScore');const rock = document.getElementById('rock');
+const paper = document.getElementById('paper');
+const scissors = document.getElementById('scissors');
 const rockBtn = document.getElementById('rock');
 const paperBtn = document.getElementById('paper');
 const scissorsBtn = document.getElementById('scissors');
 const playBtns = document.getElementsByClassName('playBtn');
 const resetBtn = document.getElementById('reset');
-resetBtn.style.display = "none";
 
 let playerCounter = 0;
 let computerCounter = 0;
 
+rock.addEventListener('click', () => {
+    const playerChoice = "rock";
+    playRound(playerChoice, getComputerChoice());
+});
+
+paper.addEventListener('click', () => {
+    const playerChoice = "paper";
+    playRound(playerChoice, getComputerChoice());
+});
+
+scissors.addEventListener('click', () => {
+    const playerChoice = "scissors";
+    playRound(playerChoice, getComputerChoice());
+});
 function capitalizeFirstLetter(input) {
     return input.charAt(0).toUpperCase() + input.slice(1);
 }
 
 function playRound(playerSelection, computerSelection) {
-    lastPlayerSelection.innerHTML = "<img src='img/"+playerSelection+".png'>";
-    lastComputerSelection.innerHTML = "<img src='img/"+computerSelection+".png'>";
+    lastPlayerSelection.innerHTML = "<img src='img/" + playerSelection + ".png'>";
+    lastComputerSelection.innerHTML = "<img src='img/" + computerSelection + ".png'>";
 
     switch (true) {
         case (playerSelection === computerSelection):
@@ -68,14 +80,14 @@ function reset() {
     Array.from(playBtns).forEach((playBtn) => {
         playBtn.style.display = "block";
     });
-    computerCounter=0;
-    playerCounter=0;
-    playerSelection.textContent="?";
-    computerSelection.textContent="?";
-    lastResult.textContent="No round played yet, ready!";
-    computerScore.textContent="0";
-    playerScore.textContent="0";
-    resetBtn.style.display="none";
+    computerCounter = 0;
+    playerCounter = 0;
+    playerSelection.textContent = "?";
+    computerSelection.textContent = "?";
+    lastResult.textContent = "No round played yet, ready!";
+    computerScore.textContent = "0";
+    playerScore.textContent = "0";
+    resetBtn.style.display = "none";
 }
 
 function getComputerChoice() {
@@ -84,17 +96,3 @@ function getComputerChoice() {
     return choices[randomChoice];
 }
 
-rock.addEventListener('click', () => {
-    const playerChoice = "rock";
-    playRound(playerChoice, getComputerChoice());
-});
-
-paper.addEventListener('click', () => {
-    const playerChoice = "paper";
-    playRound(playerChoice, getComputerChoice());
-});
-
-scissors.addEventListener('click', () => {
-    const playerChoice = "scissors";
-    playRound(playerChoice, getComputerChoice());
-});
