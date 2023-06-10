@@ -2,7 +2,7 @@ let lastResult = document.getElementById('lastResult');
 let lastPlayerSelection = document.getElementById('playerSelection');
 let lastComputerSelection = document.getElementById('computerSelection');
 let playerScore = document.getElementById('playerScore');
-let computerScore = document.getElementById('computerScore');const rock = document.getElementById('rock');
+let computerScore = document.getElementById('computerScore'); const rock = document.getElementById('rock');
 const paper = document.getElementById('paper');
 const scissors = document.getElementById('scissors');
 const rockBtn = document.getElementById('rock');
@@ -10,6 +10,8 @@ const paperBtn = document.getElementById('paper');
 const scissorsBtn = document.getElementById('scissors');
 const playBtns = document.getElementsByClassName('playBtn');
 const resetBtn = document.getElementById('reset');
+const scoreBoxPlayer = document.getElementById('scoreBoxPlayer');
+const scoreBoxComputer = document.getElementById('scoreBoxComputer');
 
 let playerCounter = 0;
 let computerCounter = 0;
@@ -39,6 +41,10 @@ function playRound(playerSelection, computerSelection) {
     switch (true) {
         case (playerSelection === computerSelection):
             lastResult.textContent = "It's a tie!";
+            scoreBoxPlayer.style.border = "3px solid #a5826d";
+            scoreBoxPlayer.style.backgroundColor="transparent";
+            scoreBoxComputer.style.border = "3px solid #a5826d";
+            scoreBoxComputer.style.backgroundColor="transparent";
             break;
 
         case (
@@ -47,6 +53,10 @@ function playRound(playerSelection, computerSelection) {
             (playerSelection === "scissors" && computerSelection === "paper")
         ):
             lastResult.textContent = "You win! " + capitalizeFirstLetter(playerSelection) + " beats " + capitalizeFirstLetter(computerSelection) + ".";
+            scoreBoxPlayer.style.border = "3px solid green";
+            scoreBoxPlayer.style.backgroundColor="#90ee90";
+            scoreBoxComputer.style.border = "3px solid #a5826d";
+            scoreBoxComputer.style.backgroundColor="transparent";
             playerCounter++;
             break;
         case (
@@ -55,6 +65,10 @@ function playRound(playerSelection, computerSelection) {
             (playerSelection === "scissors" && computerSelection === "rock")
         ):
             lastResult.textContent = "You lose! " + capitalizeFirstLetter(computerSelection) + " beats " + capitalizeFirstLetter(playerSelection) + ".";
+            scoreBoxPlayer.style.border = "3px solid #a5826d";
+            scoreBoxPlayer.style.backgroundColor="transparent";
+            scoreBoxComputer.style.border = "3px solid red";
+            scoreBoxComputer.style.backgroundColor="#ffcccb";
             computerCounter++;
             break;
         default:
@@ -88,6 +102,10 @@ function reset() {
     computerScore.textContent = "0";
     playerScore.textContent = "0";
     resetBtn.style.display = "none";
+    scoreBoxPlayer.style.border = "3px solid #a5826d";
+    scoreBoxPlayer.style.backgroundColor="transparent";
+    scoreBoxComputer.style.border = "3px solid #a5826d";
+    scoreBoxComputer.style.backgroundColor="transparent";
 }
 
 function getComputerChoice() {

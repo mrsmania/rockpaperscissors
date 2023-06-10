@@ -1,8 +1,14 @@
-html {
+* {
     margin: 0;
     padding: 0;
     border: 0;
     font-family: "Poppins", monospace;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+body {
     background-color: #DDD0C8;
 }
 
@@ -10,6 +16,10 @@ h1 {
     font-size: 2.8em;
     font-weight: 900;
     margin: 40px 0;
+}
+
+h2 {
+    margin: 20px 0;
 }
 
 #container {
@@ -38,7 +48,7 @@ h1 {
 #scoreBoxPlayer, #scoreBoxComputer {
     width: 200px;
     margin: 10px;
-    border: 1px solid #a5826d;
+    border: 3px solid #a5826d;
     border-radius: 10px;
 }
 
@@ -58,6 +68,10 @@ h1 {
     align-items: center;
     font-size: 65px;
     font-weight: 900;
+}
+
+#lastResult {
+    margin: 20px 0;
 }
 
 img {
