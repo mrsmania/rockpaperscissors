@@ -55,23 +55,23 @@ function playRound(playerSelection, computerSelection) {
             playBtn.style.display = "none";
         });
         if (playerCounter == 5) {
-            lastResult.textContent = "WINNER!!!";
+            lastResult.textContent = "Yay, you're a winner! 🤩 Press Reset to try again.";
         } else {
-            lastResult.textContent = "LOSER!!!";
+            lastResult.textContent = "That's a loss 😔 Press Reset to try again.";
         }
-        resetBtn.style.display = "inline-block";
+        resetBtn.style.display = "block";
         resetBtn.addEventListener('click', reset);
     }
 }
 
 function reset() {
     Array.from(playBtns).forEach((playBtn) => {
-        playBtn.style.display = "inline-block";
+        playBtn.style.display = "block";
     });
     computerCounter=0;
     playerCounter=0;
-    playerSelection.textContent="";
-    computerSelection.textContent="";
+    playerSelection.textContent="?";
+    computerSelection.textContent="?";
     lastResult.textContent="No round played yet, ready!";
     computerScore.textContent="0";
     playerScore.textContent="0";
