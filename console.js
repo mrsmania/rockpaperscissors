@@ -84,7 +84,7 @@ function reset() {
     playerCounter = 0;
     playerSelection.textContent = "?";
     computerSelection.textContent = "?";
-    lastResult.textContent = "No round played yet, ready!";
+    lastResult.textContent = "First to score 5 points wins. Choose your first move!";
     computerScore.textContent = "0";
     playerScore.textContent = "0";
     resetBtn.style.display = "none";
@@ -95,4 +95,3 @@ function getComputerChoice() {
     const randomChoice = Math.floor(Math.random() * choices.length);
     return choices[randomChoice];
 }
-
