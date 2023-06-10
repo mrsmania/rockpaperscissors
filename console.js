@@ -55,7 +55,7 @@ function playRound(playerSelection, computerSelection) {
             playBtn.style.display = "none";
         });
         if (playerCounter == 5) {
-            lastResult.textContent = "Yay, you're a winner! 🤩 Press Reset to try again.";
+            lastResult.textContent = "Yay, you're a winner! 🤩 Press Reset to play again.";
         } else {
             lastResult.textContent = "That's a loss 😔 Press Reset to try again.";
         }
