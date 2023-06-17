@@ -14,28 +14,32 @@
 
 <body>
     <div id="container">
-        <div id="scoresContainer">
-            <h1>Rock Paper Scissors</h1>
-            <div id="scoreBoxContainer">
-                <div id="scoreBoxPlayer">
-                    <h2>Player</h2>
-                    <h1><span id="playerScore">0</span></h1>
-                    <p id="playerSelection">?</p>
+        <div id="innercontainer">
+            <div id="scoresContainer">
+                <h1>Rock Paper Scissors</h1>
+                <div id="scoreBoxContainer">
+                    <div id="scoreBoxPlayer">
+                        <h2>Player</h2>
+                        <h1><span id="playerScore">0</span></h1>
+                        <p id="playerSelection">?</p>
+                    </div>
+                    <div id="scoreBoxComputer">
+                        <h2> Computer</h2>
+                        <h1><span id="computerScore">0</span></h1>
+                        <p id="computerSelection">?</p>
+                    </div>
                 </div>
-                <div id="scoreBoxComputer">
-                    <h2> Computer</h2>
-                    <h1><span id="computerScore">0</span></h1>
-                    <p id="computerSelection">?</p>
-                </div>
+                <p id="lastResult">First to score 5 points wins. Choose your first move!</p>
             </div>
-            <p id="lastResult">First to score 5 points wins. Choose your first move!</p>
+            <div id="buttonsContainer">
+                <div><button class="playBtn" id="rock"></button></div>
+                <div><button class="playBtn" id="paper"></button></div>
+                <div><button class="playBtn" id="scissors"></button></div>
+                <div><button class="resetBtn" id="reset">Reset</button></div>
+            </div>
         </div>
-        <div id="buttonsContainer">
-            <div><button class="playBtn" id="rock"></button></div>
-            <div><button class="playBtn" id="paper"></button></div>
-            <div><button class="playBtn" id="scissors"></button></div>
-            <div><button class="resetBtn" id="reset">Reset</button></div>
-        </div>
+        <div id="footer">made by <a href="https://github.com/mrsmania/etch-a-sketch" target="_blank"><img
+                    src="img/github.png"> mrsmania</a></div>
     </div>
 </body>
 
